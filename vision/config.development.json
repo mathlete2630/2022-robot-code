@@ -3,7 +3,7 @@
     "cameras": [
         {
             "name": "HighGoal",
-            "id": "/dev/video2",
+            "id": 0,
             "props": []
         }
     ]

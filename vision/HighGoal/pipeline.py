@@ -21,7 +21,7 @@ def get_filtered_contours(config: dict, source_image: np.ndarray) -> List[np.nda
     vision_config = config['vision_config']
     image = source_image.copy()
 
-  #  image = apply_morph(vision_config, image)
+    image = apply_morph(vision_config, image)
     image = apply_hsv_filter(vision_config, image)
 
     return find_contours(image)

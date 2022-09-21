@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     # MARK: Where to define layers
     layers = [
-        #HighGoal(instance)
+        HighGoal(instance)
     ]
 
     if sys.platform.startswith('linux'):

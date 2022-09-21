@@ -14,19 +14,19 @@ highGoalConfig = {
   },
 
   "vision_config": {
-    "hsv_low_h": 62,
-    "hsv_low_s": 200.0,
-    "hsv_low_v": 200.0,
+    "hsv_low_h": 40,
+    "hsv_low_s": 150,
+    "hsv_low_v": 150,
 
     "hsv_high_h": 87.5,
-    "hsv_high_s": 255.0,
-    "hsv_high_v": 255.0,
+    "hsv_high_s": 255,
+    "hsv_high_v": 255,
 
     "open_iters": 1,
     "close_iters": 1,
 
-    "do_dilate": False,
-    "size_rel_thresh": 0.018,
+    "do_dilate": True,
+    "size_rel_thresh": 0.01,
 
     "score_thresh": 0.5
   },
@@ -48,7 +48,12 @@ class HighGoal(VisionLayer):
         frame = self.visionInstance.get("HighGoal")
 
         height, width, color = frame.shape
+        newframe = pipeline.apply_morph(highGoalConfig["vision_config"], frame)
+        newframe2 = pipeline.apply_hsv_filter(highGoalConfig["vision_config"], newframe)
+        #newframe3 = pipeline.find_contours(newframe2)
         foundTargets = high_goal.find_targets(highGoalConfig, frame, 0.5, width, height / width)
+
+        print(len(foundTargets))
 
         for found in foundTargets:
             rect = found[1]
